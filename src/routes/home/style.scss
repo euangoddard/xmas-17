@@ -1,0 +1,12 @@
+.days {
+	display: flex;
+	flex-wrap: nowrap;
+	cursor: move;
+	cursor: grab;
+	cursor: -webkit-grab;
+	
+	&.grabbing {
+		cursor: grabbing;
+		cursor: -webkit-grabbing;
+	}
+}

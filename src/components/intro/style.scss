@@ -1,0 +1,12 @@
+.intro {
+  width: 100vw;
+  padding: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 0 0 auto;
+  perspective: 500px;
+  overflow: hidden;
+
+  color: rgba(black, 0.65);
+}

@@ -1,0 +1,71 @@
+.day {
+	width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+  perspective: 500px;
+  
+  font-size: 10rem;
+
+  .background {
+    background: no-repeat center;
+    background-size: cover;
+  }
+  
+}
+
+.cover {
+  color: #fff;
+  background: darken(#fff, 10%);
+
+  position: relative;
+
+  %child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .background {
+    @extend %child;
+    left: -10vw;
+    right: -10vw;
+    z-index: 1;
+  }
+
+  .label {
+    @extend %child;
+    z-index: 2;
+    text-align: center;
+  }
+}
+
+.box {
+  flex-direction: column; 
+  background: #fafafa;
+  color: #444;
+
+  .background {
+    width: 40vmin;
+    height: 40vmin;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+
+  .label {
+    margin: 0;
+  }
+}
+
+
+@for $d from 1 through 25 {
+  .day-#{$d} {
+    .background {
+      background-image: url('/assets/days/#{$d}.jpg');
+    }
+    
+  }
+}
