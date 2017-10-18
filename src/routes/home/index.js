@@ -5,6 +5,13 @@ import { Intro } from '../../components/intro';
 
 const DAY_OF_ADVENT = 25;
 
+let windowProxy;
+if (typeof window === "undefined") {
+	windowProxy = {innerWidth: 1200};
+} else {
+	windowProxy = window;
+}
+
 export default class Home extends Component {
 
 	state = { isMouseDown: false, x: 0, offsetX: 0 };
@@ -58,17 +65,17 @@ export default class Home extends Component {
 	}
 
 	updateOffset(delta) {
-		const offsetX = constrainNumber(this.state.offsetX + delta, 0, window.innerWidth * DAY_OF_ADVENT);
+		const offsetX = constrainNumber(this.state.offsetX + delta, 0, windowProxy.innerWidth * DAY_OF_ADVENT);
 		this.setState({ offsetX });
 	}
 
 	getTransform({ offsetX }) {
-		return { transform: `translate3d(${-1 * offsetX}px, 0, 0` };
+		return { transform: `translate3d(${-1 * offsetX}px, 0, 0)` };
 	}
 
 	renderDays(offsetX) {
 		const days = [];
-		const windowWidth = window.innerWidth;
+		const windowWidth = windowProxy.innerWidth;
 		for (let i = 0; i < DAY_OF_ADVENT; i++) {
 			const dayOffsetX = offsetX - windowWidth * (i + 1);
 			days.push(<Day day={i} offsetX={dayOffsetX} />);

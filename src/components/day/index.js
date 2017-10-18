@@ -13,6 +13,9 @@ export class Day extends Component {
   }
 
   getStyle(day, offsetX) {
+    if (typeof window === "undefined") {
+      return {};
+    }
     const relativeOffset = 20 * offsetX / window.innerWidth;
     if (20 < Math.abs(relativeOffset)) {
       // Only cause style re-paints for the current visible area

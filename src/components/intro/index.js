@@ -9,6 +9,9 @@ export class Intro extends Component {
   }
 
   getStyles(offsetX) {
+    if (typeof window === "undefined") {
+      return {};
+    }
     const ratio = offsetX / window.innerWidth
     const percent = 100 * ratio;
     return {
