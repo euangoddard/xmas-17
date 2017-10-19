@@ -70,7 +70,7 @@ module.exports =
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"day":"day__1Bqpt","background":"background__ZCkI0","cover":"cover__1Xjgy","label":"label__2BtRs","box":"box__1tRXU","day-1":"day-1__2EG-K","day-2":"day-2__3Oo5u","day-3":"day-3__2vj-l","day-4":"day-4__1qI6D","day-5":"day-5__xskGj","day-6":"day-6__2R5id","day-7":"day-7__2soa2","day-8":"day-8__39qBf","day-9":"day-9__1FzKA","day-10":"day-10__27Swe","day-11":"day-11__3ZVbK","day-12":"day-12__3TVDU","day-13":"day-13__3pyPw","day-14":"day-14__2Mh4g","day-15":"day-15__2xpaW","day-16":"day-16__JYukD","day-17":"day-17__2PY85","day-18":"day-18__3uIzv","day-19":"day-19__1NwZN","day-20":"day-20__1ABKp","day-21":"day-21__2vIKC","day-22":"day-22__1jVub","day-23":"day-23__3rQy8","day-24":"day-24__2bScc","day-25":"day-25__3oINU"};
+module.exports = {"day":"day__1Bqpt","background":"background__ZCkI0","label":"label__2BtRs","cover":"cover__1Xjgy","box":"box__1tRXU","day-1":"day-1__2EG-K","day-2":"day-2__3Oo5u","day-3":"day-3__2vj-l","day-4":"day-4__1qI6D","day-5":"day-5__xskGj","day-6":"day-6__2R5id","day-7":"day-7__2soa2","day-8":"day-8__39qBf","day-9":"day-9__1FzKA","day-10":"day-10__27Swe","day-11":"day-11__3ZVbK","day-12":"day-12__3TVDU","day-13":"day-13__3pyPw","day-14":"day-14__2Mh4g","day-15":"day-15__2xpaW","day-16":"day-16__JYukD","day-17":"day-17__2PY85","day-18":"day-18__3uIzv","day-19":"day-19__1NwZN","day-20":"day-20__1ABKp","day-21":"day-21__2vIKC","day-22":"day-22__1jVub","day-23":"day-23__3rQy8","day-24":"day-24__2bScc","day-25":"day-25__3oINU"};
 
 /***/ }),
 
@@ -598,6 +598,9 @@ function home__inherits(subClass, superClass) { if (typeof superClass !== "funct
 
 var DAY_OF_ADVENT = 25;
 
+var FRICTION = 0.95;
+var STOP_THRESHOLD = 0.3;
+
 var windowProxy = void 0;
 if (typeof window === "undefined") {
 	windowProxy = { innerWidth: 1200 };
@@ -617,14 +620,18 @@ var home_Home = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = home__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = { isMouseDown: false, x: 0, offsetX: 0 }, _this.startDrag = function (e) {
+		return _ret = (_temp = (_this = home__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = { isMouseDown: false, x: 0, offsetX: 0, trackingPoints: [], decVelX: 0 }, _this.startDrag = function (e) {
 			var x = getXFromTouchOrPointer(e);
-			_this.setState({ isMouseDown: true, x: x });
+			_this.setState({ isMouseDown: true, x: x, trackingPoints: [] });
 		}, _this.endDrag = function (e) {
+			var x = getXFromTouchOrPointer(e);
+			_this.addTrackingPoint(x);
 			_this.setState({ isMouseDown: false });
+			_this.startDeceleration();
 		}, _this.drag = function (e) {
 			if (_this.state.isMouseDown) {
 				var x = getXFromTouchOrPointer(e);
+				_this.addTrackingPoint(x);
 				var delta = _this.state.x - x;
 				_this.setState({ x: x });
 				_this.updateOffset(delta);
@@ -662,6 +669,19 @@ var home_Home = function (_Component) {
 		);
 	};
 
+	Home.prototype.addTrackingPoint = function addTrackingPoint(x) {
+		var time = Date.now();
+		var trackingPoints = [].concat(this.state.trackingPoints);
+		while (trackingPoints.length > 0) {
+			if (time - trackingPoints[0].time <= 100) {
+				break;
+			}
+			trackingPoints.shift();
+		}
+		trackingPoints.push({ x: x, time: time });
+		this.setState({ trackingPoints: trackingPoints });
+	};
+
 	Home.prototype.updateOffset = function updateOffset(delta) {
 		var offsetX = constrainNumber(this.state.offsetX + delta, 0, windowProxy.innerWidth * DAY_OF_ADVENT);
 		this.setState({ offsetX: offsetX });
@@ -683,6 +703,44 @@ var home_Home = function (_Component) {
 		return days;
 	};
 
+	// Deceleration
+	Home.prototype.startDeceleration = function startDeceleration() {
+		var trackingPoints = this.state.trackingPoints;
+
+		var firstPoint = trackingPoints[0];
+		var lastPoint = trackingPoints[trackingPoints.length - 1];
+
+		var xOffset = lastPoint.x - firstPoint.x;
+		var timeOffset = lastPoint.time - firstPoint.time;
+
+		var D = timeOffset / 15;
+
+		var decVelX = xOffset / D || 0; // prevent NaN
+
+		var decelerating = false;
+		if (Math.abs(decVelX) > 1) {
+			decelerating = true;
+			requestAnimationFrame(this.stepDeceleration.bind(this));
+		}
+		this.setState({ decelerating: decelerating, decVelX: decVelX });
+	};
+
+	Home.prototype.stepDeceleration = function stepDeceleration() {
+		if (!this.state.decelerating) {
+			return;
+		}
+
+		var decVelX = this.state.decVelX * FRICTION;
+		if (Math.abs(decVelX) > STOP_THRESHOLD) {
+			this.updateOffset(-1 * decVelX);
+
+			requestAnimationFrame(this.stepDeceleration.bind(this));
+			this.setState({ decVelX: decVelX });
+		} else {
+			this.setState({ decelerating: false });
+		}
+	};
+
 	_createClass(Home, [{
 		key: 'grabbingClass',
 		get: function get() {
@@ -699,7 +757,11 @@ var home_Home = function (_Component) {
 function getXFromTouchOrPointer(event) {
 	var x = void 0;
 	if ('touches' in event) {
-		x = event.touches[0].clientX;
+		try {
+			x = event.changedTouches[0].clientX;
+		} catch (e) {
+			console.log(event);
+		}
 	} else {
 		x = event.clientX;
 	}
