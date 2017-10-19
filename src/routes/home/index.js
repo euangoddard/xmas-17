@@ -5,16 +5,19 @@ import { Intro } from '../../components/intro';
 
 const DAY_OF_ADVENT = 25;
 
+const FRICTION = 0.95;
+const STOP_THRESHOLD = 0.3;
+
 let windowProxy;
 if (typeof window === "undefined") {
-	windowProxy = {innerWidth: 1200};
+	windowProxy = { innerWidth: 1200 };
 } else {
 	windowProxy = window;
 }
 
 export default class Home extends Component {
 
-	state = { isMouseDown: false, x: 0, offsetX: 0 };
+	state = { isMouseDown: false, x: 0, offsetX: 0, trackingPoints: [], decVelX: 0 };
 
 	render(props, state) {
 		return (
@@ -33,7 +36,7 @@ export default class Home extends Component {
 					class={`fullscreen ${style.days} ${this.grabbingClass}`}
 					style={this.getTransform(state)}
 				>
-					<Intro offsetX={state.offsetX}/>
+					<Intro offsetX={state.offsetX} />
 					{this.renderDays(state.offsetX)}
 				</div>
 			</div>
@@ -42,16 +45,20 @@ export default class Home extends Component {
 
 	startDrag = e => {
 		const x = getXFromTouchOrPointer(e);
-		this.setState({ isMouseDown: true, x });
+		this.setState({ isMouseDown: true, x, trackingPoints: [] });
 	}
 
 	endDrag = e => {
+		const x = getXFromTouchOrPointer(e);
+		this.addTrackingPoint(x);
 		this.setState({ isMouseDown: false });
+		this.startDeceleration();
 	}
 
 	drag = e => {
 		if (this.state.isMouseDown) {
 			const x = getXFromTouchOrPointer(e);
+			this.addTrackingPoint(x);
 			const delta = this.state.x - x;
 			this.setState({ x });
 			this.updateOffset(delta);
@@ -62,6 +69,19 @@ export default class Home extends Component {
 		e.preventDefault();
 		const delta = e.deltaX + e.deltaY;
 		this.updateOffset(delta);
+	}
+
+	addTrackingPoint(x) {
+		const time = Date.now();
+		const trackingPoints = [...this.state.trackingPoints];
+		while (trackingPoints.length > 0) {
+			if (time - trackingPoints[0].time <= 100) {
+				break;
+			}
+			trackingPoints.shift();
+		}
+		trackingPoints.push({ x, time })
+		this.setState({trackingPoints});
 	}
 
 	updateOffset(delta) {
@@ -87,12 +107,54 @@ export default class Home extends Component {
 		return this.state.isMouseDown ? style.grabbing : '';
 	}
 
+	// Deceleration
+	startDeceleration() {
+		const { trackingPoints } = this.state;
+		const firstPoint = trackingPoints[0];
+		const lastPoint = trackingPoints[trackingPoints.length - 1];
+
+		var xOffset = lastPoint.x - firstPoint.x;
+		var timeOffset = lastPoint.time - firstPoint.time;
+
+		const D = (timeOffset / 15);
+
+		const decVelX = (xOffset / D) || 0; // prevent NaN
+
+		let decelerating = false;
+		if (Math.abs(decVelX) > 1) {
+			decelerating = true;
+			requestAnimationFrame(this.stepDeceleration.bind(this));
+		}
+		this.setState({ decelerating, decVelX });
+	}
+
+	stepDeceleration() {
+		if (!this.state.decelerating) {
+			return;
+		}
+
+		const decVelX = this.state.decVelX * FRICTION;
+		if (Math.abs(decVelX) > STOP_THRESHOLD) {
+			this.updateOffset(-1 * decVelX);
+
+			requestAnimationFrame(this.stepDeceleration.bind(this));
+			this.setState({decVelX});
+		} else {
+			this.setState({decelerating: false});
+		}
+	}
+
 }
 
 function getXFromTouchOrPointer(event) {
 	let x;
 	if ('touches' in event) {
-		x = event.touches[0].clientX;
+		try {
+			x = event.changedTouches[0].clientX;
+		} catch (e) {
+			console.log(event);
+		}
+		
 	} else {
 		x = event.clientX;
 	}
