@@ -6,12 +6,14 @@
   flex: 0 0 auto;
   overflow: hidden;
   perspective: 500px;
-  
-  font-size: 10rem;
 
   .background {
     background: no-repeat center;
     background-size: cover;
+  }
+
+  .label {
+    font-size: 40vmin;
   }
   
 }
@@ -39,6 +41,7 @@
 
   .label {
     @extend %child;
+    position: relative;
     z-index: 2;
     text-align: center;
   }
