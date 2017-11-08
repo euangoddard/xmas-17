@@ -1,14 +1,13 @@
 const TIME_SUFFIXES = ['w', 'd', 'h', 'm', 's', 'ms'];
 
-
 export function isFutureDate(date) {
-  return (date -  new Date()) > 0;
+  return date - new Date() > 0;
 }
 
 export function formatDateDelta(delta) {
   const timePartsFormatted = [];
   const timeParts = decomposeDateDelta(delta);
-  for (let i=0, part, suffix; i<timeParts.length; i++) {
+  for (let i = 0, part, suffix; i < timeParts.length; i++) {
     part = timeParts[i];
     suffix = TIME_SUFFIXES[i];
     if (part) {
@@ -23,7 +22,7 @@ export function formatDateDelta(delta) {
 
 function decomposeDateDelta(delta) {
   const timeParts = [];
-  let rest = delta
+  let rest = delta;
   let part;
   [1000, 60, 60, 24, 7, 52].forEach(divisor => {
     [rest, part] = divMod(rest, divisor);
