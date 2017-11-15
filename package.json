@@ -28,12 +28,12 @@
     "if-env": "^1.0.0",
     "node-sass": "^4.5.3",
     "preact-cli": "^2.1.0",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "prettier": "^1.8.1"
   },
   "dependencies": {
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.7",
-    "prettier": "^1.8.1"
+    "preact-router": "^2.5.7"
   }
 }
