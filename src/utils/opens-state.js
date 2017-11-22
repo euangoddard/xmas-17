@@ -12,9 +12,9 @@ class OpensState {
   }
 
   loadState() {
-    let stateRaw
+    let stateRaw;
     try {
-      const stateRaw = localStorage.getItem(OpensState.KEY);
+      stateRaw = localStorage.getItem(OpensState.KEY);
     } catch (e) { }
 
     let state;
