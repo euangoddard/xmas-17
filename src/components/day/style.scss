@@ -18,6 +18,16 @@
   
 }
 
+
+.guard {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .cover {
   color: #fff;
   background: darken(#fff, 10%);
@@ -45,7 +55,12 @@
     z-index: 2;
     text-align: center;
   }
+
+  .guard {
+    background: darken(#fff, 10%);
+  }
 }
+
 
 .box {
   flex-direction: column; 
@@ -60,6 +75,11 @@
 
   .label {
     margin: 0;
+  }
+
+  .guard {
+    background: #fafafa;
+    color: #444;
   }
 }
 
