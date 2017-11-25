@@ -66,34 +66,24 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "7BpW":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"day":"day__1Bqpt","background":"background__ZCkI0","label":"label__2BtRs","cover":"cover__1Xjgy","box":"box__1tRXU","day-1":"day-1__2EG-K","day-2":"day-2__3Oo5u","day-3":"day-3__2vj-l","day-4":"day-4__1qI6D","day-5":"day-5__xskGj","day-6":"day-6__2R5id","day-7":"day-7__2soa2","day-8":"day-8__39qBf","day-9":"day-9__1FzKA","day-10":"day-10__27Swe","day-11":"day-11__3ZVbK","day-12":"day-12__3TVDU","day-13":"day-13__3pyPw","day-14":"day-14__2Mh4g","day-15":"day-15__2xpaW","day-16":"day-16__JYukD","day-17":"day-17__2PY85","day-18":"day-18__3uIzv","day-19":"day-19__1NwZN","day-20":"day-20__1ABKp","day-21":"day-21__2vIKC","day-22":"day-22__1jVub","day-23":"day-23__3rQy8","day-24":"day-24__2bScc","day-25":"day-25__3oINU"};
-
-/***/ }),
-
-/***/ "JkW7":
+/***/ "/QC5":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: ./style/index.scss
-var style = __webpack_require__("yY49");
-var style_default = /*#__PURE__*/__webpack_require__.n(style);
-
-// EXTERNAL MODULE: ../node_modules/preact/dist/preact.min.js
-var preact_min = __webpack_require__("KM04");
-var preact_min_default = /*#__PURE__*/__webpack_require__.n(preact_min);
-
-// CONCATENATED MODULE: ../node_modules/preact-router/dist/preact-router.es.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "subscribers", function() { return subscribers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentUrl", function() { return getCurrentUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "route", function() { return route; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return Router; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return Route; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return Link; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_preact__ = __webpack_require__("KM04");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_preact___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_preact__);
 
 
 var EMPTY$1 = {};
 
-function preact_router_es_assign(obj, props) {
+function assign(obj, props) {
 	// eslint-disable-next-line guard-for-in
 	for (var i in props) {
 		obj[i] = props[i];
@@ -320,7 +310,7 @@ function initEventListeners() {
 	eventListenersInitialized = true;
 }
 
-var preact_router_es_Router = function (Component$$1) {
+var Router = function (Component$$1) {
 	function Router(props) {
 		Component$$1.call(this, props);
 		if (props.history) {
@@ -403,8 +393,8 @@ var preact_router_es_Router = function (Component$$1) {
 			if (matches) {
 				if (invoke !== false) {
 					var newProps = { url: url, matches: matches };
-					preact_router_es_assign(newProps, matches);
-					return Object(preact_min["cloneElement"])(vnode, newProps);
+					assign(newProps, matches);
+					return Object(__WEBPACK_IMPORTED_MODULE_0_preact__["cloneElement"])(vnode, newProps);
 				}
 				return vnode;
 			}
@@ -440,25 +430,61 @@ var preact_router_es_Router = function (Component$$1) {
 	};
 
 	return Router;
-}(preact_min["Component"]);
+}(__WEBPACK_IMPORTED_MODULE_0_preact__["Component"]);
 
-var preact_router_es_Link = function Link(props) {
-	return Object(preact_min["h"])('a', preact_router_es_assign({ onClick: handleLinkClick }, props));
+var Link = function Link(props) {
+	return Object(__WEBPACK_IMPORTED_MODULE_0_preact__["h"])('a', assign({ onClick: handleLinkClick }, props));
 };
 
-var preact_router_es_Route = function Route(props) {
-	return Object(preact_min["h"])(props.component, props);
+var Route = function Route(props) {
+	return Object(__WEBPACK_IMPORTED_MODULE_0_preact__["h"])(props.component, props);
 };
 
-preact_router_es_Router.subscribers = subscribers;
-preact_router_es_Router.getCurrentUrl = getCurrentUrl;
-preact_router_es_Router.route = route;
-preact_router_es_Router.Router = preact_router_es_Router;
-preact_router_es_Router.Route = preact_router_es_Route;
-preact_router_es_Router.Link = preact_router_es_Link;
+Router.subscribers = subscribers;
+Router.getCurrentUrl = getCurrentUrl;
+Router.route = route;
+Router.Router = Router;
+Router.Route = Route;
+Router.Link = Link;
 
-/* harmony default export */ var preact_router_es = (preact_router_es_Router);
+/* harmony default export */ __webpack_exports__["default"] = (Router);
 //# sourceMappingURL=preact-router.es.js.map
+
+/***/ }),
+
+/***/ "7BpW":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"day":"day__1Bqpt","background":"background__ZCkI0","label":"label__2BtRs","guard":"guard__UXw_u","opened":"opened__3r8E_","cover":"cover__1Xjgy","box":"box__1tRXU","day-1":"day-1__2EG-K","day-2":"day-2__3Oo5u","day-3":"day-3__2vj-l","day-4":"day-4__1qI6D","day-5":"day-5__xskGj","day-6":"day-6__2R5id","day-7":"day-7__2soa2","day-8":"day-8__39qBf","day-9":"day-9__1FzKA","day-10":"day-10__27Swe","day-11":"day-11__3ZVbK","day-12":"day-12__3TVDU","day-13":"day-13__3pyPw","day-14":"day-14__2Mh4g","day-15":"day-15__2xpaW","day-16":"day-16__JYukD","day-17":"day-17__2PY85","day-18":"day-18__3uIzv","day-19":"day-19__1NwZN","day-20":"day-20__1ABKp","day-21":"day-21__2vIKC","day-22":"day-22__1jVub","day-23":"day-23__3rQy8","day-24":"day-24__2bScc","day-25":"day-25__3oINU"};
+
+/***/ }),
+
+/***/ "HgQI":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"about":"about__QyXyn","centred":"centred__19Psa"};
+
+/***/ }),
+
+/***/ "JkW7":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: ./style/index.scss
+var style = __webpack_require__("yY49");
+var style_default = /*#__PURE__*/__webpack_require__.n(style);
+
+// EXTERNAL MODULE: ../node_modules/preact/dist/preact.min.js
+var preact_min = __webpack_require__("KM04");
+var preact_min_default = /*#__PURE__*/__webpack_require__.n(preact_min);
+
+// EXTERNAL MODULE: ../node_modules/preact-router/dist/preact-router.es.js
+var preact_router_es = __webpack_require__("/QC5");
+
 // EXTERNAL MODULE: ./routes/home/style.scss
 var home_style = __webpack_require__("Lglr");
 var home_style_default = /*#__PURE__*/__webpack_require__.n(home_style);
@@ -467,10 +493,107 @@ var home_style_default = /*#__PURE__*/__webpack_require__.n(home_style);
 var day_style = __webpack_require__("7BpW");
 var day_style_default = /*#__PURE__*/__webpack_require__.n(day_style);
 
-// CONCATENATED MODULE: ./components/day/index.js
+// CONCATENATED MODULE: ./utils/date.js
+var TIME_SUFFIXES = ['w', 'd', 'h', 'm', 's', 'ms'];
 
+function isFutureDate(date) {
+  return date - new Date() > 0;
+}
+
+function formatDateDelta(delta) {
+  var timePartsFormatted = [];
+  var timeParts = decomposeDateDelta(delta);
+  for (var i = 0, part, suffix; i < timeParts.length; i++) {
+    part = timeParts[i];
+    suffix = TIME_SUFFIXES[i];
+    if (part) {
+      timePartsFormatted.push('' + part + suffix);
+      if (timePartsFormatted.length >= 2) {
+        break;
+      }
+    }
+  }
+  return timePartsFormatted.join(', ');
+}
+
+function decomposeDateDelta(delta) {
+  var timeParts = [];
+  var rest = delta;
+  var part = void 0;
+  [1000, 60, 60, 24, 7, 52].forEach(function (divisor) {
+    var _divMod = divMod(rest, divisor);
+
+    rest = _divMod[0];
+    part = _divMod[1];
+
+    timeParts.unshift(part);
+  }, []);
+
+  return timeParts;
+}
+
+function divMod(numerator, denominator) {
+  var remainder = numerator % denominator;
+  var integerResult = (numerator - remainder) / denominator;
+  return [integerResult, remainder];
+}
+// CONCATENATED MODULE: ./utils/opens-state.js
+var _class, _temp;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var OpensState = (_temp = _class = function () {
+  function OpensState() {
+    _classCallCheck(this, OpensState);
+
+    this.opens = this.loadState();
+  }
+
+  OpensState.prototype.openDay = function openDay(day) {
+    this.opens[day] = true;
+    this.saveState();
+  };
+
+  OpensState.prototype.loadState = function loadState() {
+    var stateRaw = void 0;
+    try {
+      stateRaw = localStorage.getItem(OpensState.KEY);
+    } catch (e) {}
+
+    var state = void 0;
+    if (stateRaw) {
+      try {
+        state = JSON.parse(stateRaw);
+      } catch (e) {}
+    }
+
+    if (!state) {
+      state = {};
+      for (var i = 0; i < 25; i++) {
+        state[i] = false;
+      }
+    }
+    return state;
+  };
+
+  OpensState.prototype.saveState = function saveState() {
+    var stateRaw = JSON.stringify(this.opens);
+    try {
+      localStorage.setItem(OpensState.KEY, stateRaw);
+    } catch (e) {}
+  };
+
+  return OpensState;
+}(), _class.KEY = 'opens', _temp);
+
+
+var OPEN_STATE = new OpensState();
+// CONCATENATED MODULE: ./components/day/index.js
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+
+
+function day__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -479,16 +602,55 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
+var YEAR = new Date().getFullYear();
+
 var day_Day = function (_Component) {
   _inherits(Day, _Component);
 
   function Day() {
-    _classCallCheck(this, Day);
+    day__classCallCheck(this, Day);
 
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, _Component.call(this));
+
+    _this.open = function (e) {
+      OPEN_STATE.openDay(_this.props.day);
+      _this.setState({ isOpened: true });
+    };
+
+    _this.state = {
+      isFuture: true,
+      deltaFormatted: null,
+      isOpened: false
+    };
+    return _this;
   }
 
-  Day.prototype.render = function render(_ref) {
+  Day.prototype.componentDidMount = function componentDidMount() {
+    var _this2 = this;
+
+    this.setState({ isOpened: OPEN_STATE.opens[this.props.day] });
+    this.timer = setInterval(function () {
+      var isFuture = isFutureDate(_this2.date);
+      if (_this2.state.isFuture !== isFuture) {
+        _this2.setState({ isFuture: isFuture });
+      }
+      if (isFuture) {
+        var delta = _this2.date - new Date();
+        var deltaFormatted = formatDateDelta(delta);
+        if (_this2.state.deltaFormatted !== deltaFormatted) {
+          _this2.setState({ deltaFormatted: deltaFormatted });
+        }
+      }
+    }, 1000);
+  };
+
+  Day.prototype.componentWillUnmount = function componentWillUnmount() {
+    clearInterval(this.timer);
+  };
+
+  Day.prototype.render = function render(_ref, state) {
     var day = _ref.day,
         offsetX = _ref.offsetX;
 
@@ -502,7 +664,8 @@ var day_Day = function (_Component) {
         { 'class': day_style_default.a.label },
         day + 1
       ),
-      Object(preact_min["h"])('div', { 'class': day_style_default.a.background, style: this.getStyle(day, offsetX) })
+      Object(preact_min["h"])('div', { 'class': day_style_default.a.background, style: this.getStyle(day, offsetX) }),
+      this.renderGaurd(state)
     );
   };
 
@@ -520,13 +683,67 @@ var day_Day = function (_Component) {
     if (day % 2 === 0) {
       transform = 'translate3d(' + relativeOffset + '%, 0, 0)';
     } else {
-      transform = 'rotateY(' + relativeOffset + 'deg)';
+      transform = 'rotateY(' + 2 * relativeOffset + 'deg)';
     }
     return { transform: transform };
   };
 
+  Day.prototype.renderGaurd = function renderGaurd(_ref2) {
+    var isFuture = _ref2.isFuture,
+        deltaFormatted = _ref2.deltaFormatted,
+        isOpened = _ref2.isOpened;
+
+    var content = isFuture ? Object(preact_min["h"])(
+      'p',
+      null,
+      'Open in ',
+      deltaFormatted
+    ) : Object(preact_min["h"])(
+      'button',
+      { type: 'button', onClick: this.open },
+      'Open'
+    );
+    var classes = day_style_default.a.guard;
+    if (isOpened) {
+      classes = classes + ' ' + day_style_default.a.opened;
+    }
+    return Object(preact_min["h"])(
+      'div',
+      { 'class': classes },
+      Object(preact_min["h"])(
+        'div',
+        null,
+        Object(preact_min["h"])(
+          'h1',
+          null,
+          this.props.day + 1,
+          ' Dec'
+        )
+      ),
+      Object(preact_min["h"])(
+        'div',
+        null,
+        content
+      )
+    );
+  };
+
+  _createClass(Day, [{
+    key: 'date',
+    get: function get() {
+      var day = this.props.day;
+
+      var date = new Date(YEAR, 11, day + 1);
+      return date;
+    }
+  }]);
+
   return Day;
 }(preact_min["Component"]);
+// EXTERNAL MODULE: ../node_modules/preact-router/match.js
+var match = __webpack_require__("sw5u");
+var match_default = /*#__PURE__*/__webpack_require__.n(match);
+
 // EXTERNAL MODULE: ./components/intro/style.scss
 var intro_style = __webpack_require__("yQ52");
 var intro_style_default = /*#__PURE__*/__webpack_require__.n(intro_style);
@@ -539,6 +756,7 @@ function intro__classCallCheck(instance, Constructor) { if (!(instance instanceo
 function intro__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function intro__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -562,6 +780,11 @@ var intro_Intro = function (_Component) {
         'div',
         { style: this.getStyles(offsetX) },
         'Scroll to start your advent adventure...'
+      ),
+      Object(preact_min["h"])(
+        match["Link"],
+        { href: '/about', 'class': intro_style_default.a.about + ' link-button' },
+        'About'
       )
     );
   };
@@ -581,7 +804,7 @@ var intro_Intro = function (_Component) {
   return Intro;
 }(preact_min["Component"]);
 // CONCATENATED MODULE: ./routes/home/index.js
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var home__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 
 
@@ -741,7 +964,7 @@ var home_Home = function (_Component) {
 		}
 	};
 
-	_createClass(Home, [{
+	home__createClass(Home, [{
 		key: 'grabbingClass',
 		get: function get() {
 			return this.state.isMouseDown ? home_style_default.a.grabbing : '';
@@ -771,6 +994,113 @@ function getXFromTouchOrPointer(event) {
 function constrainNumber(number, min, max) {
 	return Math.min(Math.max(number, min), max);
 }
+// EXTERNAL MODULE: ./routes/about/style.scss
+var about_style = __webpack_require__("HgQI");
+var about_style_default = /*#__PURE__*/__webpack_require__.n(about_style);
+
+// CONCATENATED MODULE: ./routes/about/index.js
+
+
+function about__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function about__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function about__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var about__ref = Object(preact_min["h"])(
+  'h1',
+  null,
+  'About this card'
+);
+
+var about__ref2 = Object(preact_min["h"])(
+  'p',
+  null,
+  'This card was created by ',
+  Object(preact_min["h"])(
+    'a',
+    { href: 'https://github.com/euangoddard', target: '_blank' },
+    'Euan Goddard'
+  ),
+  ' to celebrate Christmas 2017 and to learn ',
+  Object(preact_min["h"])(
+    'a',
+    { href: 'https://preactjs.com/', target: '_blank' },
+    'Preact'
+  ),
+  '. It is available as an installed progressive web app (i.e. works offline) \u2013 this was achieved using ',
+  Object(preact_min["h"])(
+    'a',
+    { href: 'https://github.com/developit/preact-cli', target: '_blank' },
+    'Preact CLI'
+  ),
+  '. The source code is available ',
+  Object(preact_min["h"])(
+    'a',
+    { href: 'https://github.com/euangoddard/xmas-17', target: '_blank' },
+    'on github'
+  ),
+  '.'
+);
+
+var _ref3 = Object(preact_min["h"])(
+  'p',
+  null,
+  'All images were obtained from the marvellous ',
+  Object(preact_min["h"])(
+    'a',
+    { href: 'https://unsplash.com/search/photos/christmas', target: '_blank' },
+    'Unsplash'
+  ),
+  ' collection of free images.'
+);
+
+var _ref4 = Object(preact_min["h"])(
+  'h2',
+  null,
+  'Merry Christmas and a Happy 2018!'
+);
+
+var _ref5 = Object(preact_min["h"])(
+  match["Link"],
+  { href: '/', 'class': 'link-button' },
+  'Back to the card'
+);
+
+var about_About = function (_Component) {
+  about__inherits(About, _Component);
+
+  function About() {
+    about__classCallCheck(this, About);
+
+    return about__possibleConstructorReturn(this, _Component.apply(this, arguments));
+  }
+
+  About.prototype.render = function render() {
+    console.log(about_style_default.a);
+    return Object(preact_min["h"])(
+      'div',
+      { 'class': about_style_default.a.about },
+      about__ref,
+      about__ref2,
+      _ref3,
+      _ref4,
+      Object(preact_min["h"])(
+        'p',
+        { 'class': about_style_default.a.centred },
+        _ref5
+      )
+    );
+  };
+
+  return About;
+}(preact_min["Component"]);
+
+
 // CONCATENATED MODULE: ./components/app.js
 
 
@@ -784,45 +1114,48 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
-// import Home from 'async!./home';
+
 
 var app__ref = Object(preact_min["h"])(home_Home, { path: '/' });
 
+var app__ref2 = Object(preact_min["h"])(about_About, { path: '/about' });
+
 var app_App = function (_Component) {
-	app__inherits(App, _Component);
+  app__inherits(App, _Component);
 
-	function App() {
-		var _temp, _this, _ret;
+  function App() {
+    var _temp, _this, _ret;
 
-		app__classCallCheck(this, App);
+    app__classCallCheck(this, App);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-		return _ret = (_temp = (_this = app__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleRoute = function (e) {
-			_this.currentUrl = e.url;
-		}, _temp), app__possibleConstructorReturn(_this, _ret);
-	}
-	/** Gets fired when the route changes.
-  *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
-  *	@param {string} event.url	The newly routed URL
-  */
+    return _ret = (_temp = (_this = app__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleRoute = function (e) {
+      _this.currentUrl = e.url;
+    }, _temp), app__possibleConstructorReturn(_this, _ret);
+  }
+  /** Gets fired when the route changes.
+   *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
+   *	@param {string} event.url	The newly routed URL
+   */
 
 
-	App.prototype.render = function render() {
-		return Object(preact_min["h"])(
-			'div',
-			{ id: 'app' },
-			Object(preact_min["h"])(
-				preact_router_es_Router,
-				{ onChange: this.handleRoute },
-				app__ref
-			)
-		);
-	};
+  App.prototype.render = function render() {
+    return Object(preact_min["h"])(
+      'div',
+      { id: 'app' },
+      Object(preact_min["h"])(
+        preact_router_es["Router"],
+        { onChange: this.handleRoute },
+        app__ref,
+        app__ref2
+      )
+    );
+  };
 
-	return App;
+  return App;
 }(preact_min["Component"]);
 
 
@@ -1045,11 +1378,118 @@ module.exports = {"days":"days__zCUeF","grabbing":"grabbing__3ik7x"};
 
 /***/ }),
 
+/***/ "sw5u":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Link = exports.Match = undefined;
+
+var _extends = Object.assign || function (target) {
+	for (var i = 1; i < arguments.length; i++) {
+		var source = arguments[i];for (var key in source) {
+			if (Object.prototype.hasOwnProperty.call(source, key)) {
+				target[key] = source[key];
+			}
+		}
+	}return target;
+};
+
+var _preact = __webpack_require__("KM04");
+
+var _preactRouter = __webpack_require__("/QC5");
+
+function _objectWithoutProperties(obj, keys) {
+	var target = {};for (var i in obj) {
+		if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+	}return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+	if (!(instance instanceof Constructor)) {
+		throw new TypeError("Cannot call a class as a function");
+	}
+}
+
+function _possibleConstructorReturn(self, call) {
+	if (!self) {
+		throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	}return call && (typeof call === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+	if (typeof superClass !== "function" && superClass !== null) {
+		throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var Match = exports.Match = function (_Component) {
+	_inherits(Match, _Component);
+
+	function Match() {
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, Match);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.update = function (url) {
+			_this.nextUrl = url;
+			_this.setState({});
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
+
+	Match.prototype.componentDidMount = function componentDidMount() {
+		_preactRouter.subscribers.push(this.update);
+	};
+
+	Match.prototype.componentWillUnmount = function componentWillUnmount() {
+		_preactRouter.subscribers.splice(_preactRouter.subscribers.indexOf(this.update) >>> 0, 1);
+	};
+
+	Match.prototype.render = function render(props) {
+		var url = this.nextUrl || (0, _preactRouter.getCurrentUrl)(),
+		    path = url.replace(/\?.+$/, '');
+		this.nextUrl = null;
+		return props.children[0] && props.children[0]({
+			url: url,
+			path: path,
+			matches: path === props.path
+		});
+	};
+
+	return Match;
+}(_preact.Component);
+
+var Link = function Link(_ref) {
+	var activeClassName = _ref.activeClassName,
+	    path = _ref.path,
+	    props = _objectWithoutProperties(_ref, ['activeClassName', 'path']);
+
+	return (0, _preact.h)(Match, { path: path || props.href }, function (_ref2) {
+		var matches = _ref2.matches;
+		return (0, _preact.h)(_preactRouter.Link, _extends({}, props, { 'class': [props.class || props.className, matches && activeClassName].filter(Boolean).join(' ') }));
+	});
+};
+
+exports.Link = Link;
+exports.default = Match;
+
+Match.Link = Link;
+
+/***/ }),
+
 /***/ "yQ52":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"intro":"intro__3V96J"};
+module.exports = {"intro":"intro__3V96J","about":"about__2MuEn"};
 
 /***/ }),
 
