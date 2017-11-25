@@ -18,7 +18,6 @@
   
 }
 
-
 .guard {
   z-index: 2;
   position: absolute;
@@ -26,11 +25,82 @@
   right: 0;
   bottom: 0;
   left: 0;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 15vmin;
+    line-height: 1;
+  }
+
+  >:first-child {
+    padding: 0 32px;
+  }
+  >:last-child {
+    padding: 32px;
+    align-self: end;
+    justify-self: end;
+  }
+
+  p {
+    font-size: 10vmin;
+    margin: 0;
+  }
+
+  button {
+    appearance: none;
+    background-image: none;
+    background-color: #d50000;
+    padding: 1rem 2rem;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 5vmin;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    border: none;
+    box-shadow: none;
+    transition: background-color 0.25s ease-in-out;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: #d32f2f;
+    }
+    
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      content: '';
+      border-width: 0 0 16px 16px;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      content: '';
+      border-width: 16px 16px 0 0;
+      border-color: #ff1744 transparent transparent transparent;
+    }
+  }
 }
 
 .cover {
   color: #fff;
-  background: darken(#fff, 10%);
+  background: #E0E0E0;
 
   position: relative;
 
@@ -56,8 +126,15 @@
     text-align: center;
   }
 
+  $background-color: #E0E0E0;
+
   .guard {
-    background: darken(#fff, 10%);
+    background: $background-color;
+    color: #212121;
+    
+    button::before {
+      border-color: transparent transparent $background-color transparent;
+    }
   }
 }
 
@@ -65,7 +142,7 @@
 .box {
   flex-direction: column; 
   background: #fafafa;
-  color: #444;
+  color: #212121;
 
   .background {
     width: 40vmin;
@@ -77,9 +154,15 @@
     margin: 0;
   }
 
+  $background-color: #212121;
+
   .guard {
-    background: #fafafa;
-    color: #444;
+    background: $background-color;
+    color: #fff;
+  
+    button::before {
+      border-color: transparent transparent $background-color transparent;
+    }
   }
 }
 
