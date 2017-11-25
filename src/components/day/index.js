@@ -63,22 +63,23 @@ export class Day extends Component {
     if (day % 2 === 0) {
       transform = `translate3d(${relativeOffset}%, 0, 0)`;
     } else {
-      transform = `rotateY(${relativeOffset}deg)`;
+      transform = `rotateY(${2 * relativeOffset}deg)`;
     }
     return { transform };
   }
 
   renderGaurd({ isFuture, deltaFormatted, isOpened }) {
     const content = isFuture ? <p>Open in {deltaFormatted}</p> : <button type="button" onClick={this.open}>Open</button>;
-    if (!isOpened) {
-      return <div class={style.guard}>
-        <div>
-          <h1>{this.props.day + 1} Dec</h1>
-        </div>
-        <div>{content}</div>
-      </div>;
+    let classes = style.guard;
+    if (isOpened) {
+      classes = `${classes} ${style.opened}`;
     }
-
+    return <div class={classes}>
+      <div>
+        <h1>{this.props.day + 1} Dec</h1>
+      </div>
+      <div>{content}</div>
+    </div>;
   }
 
   open = e => {

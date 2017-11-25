@@ -5,7 +5,7 @@
   align-items: center;
   flex: 0 0 auto;
   overflow: hidden;
-  perspective: 500px;
+  perspective: 1500px;
 
   .background {
     background: no-repeat center;
@@ -29,6 +29,9 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
+
+  transition: transform 1s linear;
+  transform-origin: left center;
 
   h1 {
     text-transform: uppercase;
@@ -96,6 +99,10 @@
       border-color: #ff1744 transparent transparent transparent;
     }
   }
+}
+
+.opened {
+  transform: rotateY(-90deg);
 }
 
 .cover {
