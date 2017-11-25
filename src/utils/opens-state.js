@@ -1,5 +1,4 @@
 class OpensState {
-
   static KEY = 'opens';
 
   constructor() {
@@ -15,13 +14,13 @@ class OpensState {
     let stateRaw;
     try {
       stateRaw = localStorage.getItem(OpensState.KEY);
-    } catch (e) { }
+    } catch (e) {}
 
     let state;
     if (stateRaw) {
       try {
         state = JSON.parse(stateRaw);
-      } catch (e) { }
+      } catch (e) {}
     }
 
     if (!state) {
@@ -37,8 +36,7 @@ class OpensState {
     const stateRaw = JSON.stringify(this.opens);
     try {
       localStorage.setItem(OpensState.KEY, stateRaw);
-    } catch (e) { }
-
+    } catch (e) {}
   }
 }
 

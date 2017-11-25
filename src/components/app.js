@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
 import Home from '../routes/home';
-// import Home from 'async!./home';
+import About from '../routes/about';
 
 export default class App extends Component {
   /** Gets fired when the route changes.
@@ -18,6 +18,7 @@ export default class App extends Component {
       <div id="app">
         <Router onChange={this.handleRoute}>
           <Home path="/" />
+          <About path="/about" />
         </Router>
       </div>
     );

@@ -66,24 +66,25 @@
     position: relative;
     border: none;
     box-shadow: none;
-    transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
 
     &:hover,
     &:focus {
       background-color: #d32f2f;
+      transform: scale(1.1) rotateZ(5deg);
     }
     
     &::before {
       position: absolute;
       content: '';
-      bottom: 0;
-      right: 0;
+      bottom: -1px;
+      right: -1px;
       width: 0;
       height: 0;
       border-style: solid;
       content: '';
-      border-width: 0 0 16px 16px;
+      border-width: 0 0 18px 18px;
     }
 
     &::after {
