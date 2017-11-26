@@ -843,7 +843,7 @@ var home_Home = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this = home__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = { isMouseDown: false, x: 0, offsetX: 0, trackingPoints: [], decVelX: 0 }, _this.startDrag = function (e) {
+		return _ret = (_temp = (_this = home__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = { isMouseDown: false, x: 0, offsetX: 0, trackingPoints: [], decVelX: 0, relOffsetX: 0 }, _this.startDrag = function (e) {
 			var x = getXFromTouchOrPointer(e);
 			_this.setState({ isMouseDown: true, x: x, trackingPoints: [] });
 		}, _this.endDrag = function (e) {
@@ -906,7 +906,22 @@ var home_Home = function (_Component) {
 	};
 
 	Home.prototype.updateOffset = function updateOffset(delta) {
-		var offsetX = constrainNumber(this.state.offsetX + delta, 0, windowProxy.innerWidth * DAY_OF_ADVENT);
+		var fullWidth = windowProxy.innerWidth * DAY_OF_ADVENT;
+		var offsetX = constrainNumber(this.state.offsetX + delta, 0, fullWidth);
+		var relOffsetX = offsetX / fullWidth;
+		this.setState({ offsetX: offsetX, relOffsetX: relOffsetX });
+	};
+
+	Home.prototype.componentDidMount = function componentDidMount() {
+		window.addEventListener('resize', this.updateDimensions.bind(this));
+	};
+
+	Home.prototype.componentWillUnmount = function componentWillUnmount() {
+		window.removeEventListener('resize', this.updateDimensions.bind(this));
+	};
+
+	Home.prototype.updateDimensions = function updateDimensions() {
+		var offsetX = this.state.relOffsetX * windowProxy.innerWidth * DAY_OF_ADVENT;
 		this.setState({ offsetX: offsetX });
 	};
 
