@@ -17,7 +17,7 @@ if (typeof window === "undefined") {
 
 export default class Home extends Component {
 
-	state = { isMouseDown: false, x: 0, offsetX: 0, trackingPoints: [], decVelX: 0 };
+	state = { isMouseDown: false, x: 0, offsetX: 0, trackingPoints: [], decVelX: 0, relOffsetX: 0 };
 
 	render(props, state) {
 		return (
@@ -81,11 +81,26 @@ export default class Home extends Component {
 			trackingPoints.shift();
 		}
 		trackingPoints.push({ x, time })
-		this.setState({trackingPoints});
+		this.setState({ trackingPoints });
 	}
 
 	updateOffset(delta) {
-		const offsetX = constrainNumber(this.state.offsetX + delta, 0, windowProxy.innerWidth * DAY_OF_ADVENT);
+		const fullWidth = windowProxy.innerWidth * DAY_OF_ADVENT;
+		const offsetX = constrainNumber(this.state.offsetX + delta, 0, fullWidth);
+		const relOffsetX = offsetX / fullWidth;
+		this.setState({ offsetX, relOffsetX });
+	}
+
+	componentDidMount() {
+		window.addEventListener('resize', this.updateDimensions.bind(this));
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.updateDimensions.bind(this));
+	}
+
+	updateDimensions() {
+		const offsetX = this.state.relOffsetX * windowProxy.innerWidth * DAY_OF_ADVENT;
 		this.setState({ offsetX });
 	}
 
@@ -138,9 +153,9 @@ export default class Home extends Component {
 			this.updateOffset(-1 * decVelX);
 
 			requestAnimationFrame(this.stepDeceleration.bind(this));
-			this.setState({decVelX});
+			this.setState({ decVelX });
 		} else {
-			this.setState({decelerating: false});
+			this.setState({ decelerating: false });
 		}
 	}
 
@@ -154,7 +169,7 @@ function getXFromTouchOrPointer(event) {
 		} catch (e) {
 			console.log(event);
 		}
-		
+
 	} else {
 		x = event.clientX;
 	}
