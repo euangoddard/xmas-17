@@ -456,7 +456,7 @@ Router.Link = Link;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"day":"day__1Bqpt","background":"background__ZCkI0","label":"label__2BtRs","guard":"guard__UXw_u","opened":"opened__3r8E_","cover":"cover__1Xjgy","box":"box__1tRXU","day-1":"day-1__2EG-K","day-2":"day-2__3Oo5u","day-3":"day-3__2vj-l","day-4":"day-4__1qI6D","day-5":"day-5__xskGj","day-6":"day-6__2R5id","day-7":"day-7__2soa2","day-8":"day-8__39qBf","day-9":"day-9__1FzKA","day-10":"day-10__27Swe","day-11":"day-11__3ZVbK","day-12":"day-12__3TVDU","day-13":"day-13__3pyPw","day-14":"day-14__2Mh4g","day-15":"day-15__2xpaW","day-16":"day-16__JYukD","day-17":"day-17__2PY85","day-18":"day-18__3uIzv","day-19":"day-19__1NwZN","day-20":"day-20__1ABKp","day-21":"day-21__2vIKC","day-22":"day-22__1jVub","day-23":"day-23__3rQy8","day-24":"day-24__2bScc","day-25":"day-25__3oINU"};
+module.exports = {"day":"day__1Bqpt","background":"background__ZCkI0","label":"label__2BtRs","guard":"guard__UXw_u","opened":"opened__3r8E_","box":"box__1tRXU","cover":"cover__1Xjgy","day-1":"day-1__2EG-K","day-2":"day-2__3Oo5u","day-3":"day-3__2vj-l","day-4":"day-4__1qI6D","day-5":"day-5__xskGj","day-6":"day-6__2R5id","day-7":"day-7__2soa2","day-8":"day-8__39qBf","day-9":"day-9__1FzKA","day-10":"day-10__27Swe","day-11":"day-11__3ZVbK","day-12":"day-12__3TVDU","day-13":"day-13__3pyPw","day-14":"day-14__2Mh4g","day-15":"day-15__2xpaW","day-16":"day-16__JYukD","day-17":"day-17__2PY85","day-18":"day-18__3uIzv","day-19":"day-19__1NwZN","day-20":"day-20__1ABKp","day-21":"day-21__2vIKC","day-22":"day-22__1jVub","day-23":"day-23__3rQy8","day-24":"day-24__2bScc","day-25":"day-25__3oINU"};
 
 /***/ }),
 
@@ -656,16 +656,17 @@ var day_Day = function (_Component) {
 
     var mod2Class = day % 2 === 0 ? day_style_default.a.cover : day_style_default.a.box;
     var dayClass = day_style_default.a['day-' + (day + 1)];
+    var openedClass = state.isOpened ? day_style_default.a.opened : '';
     return Object(preact_min["h"])(
       'div',
-      { 'class': day_style_default.a.day + ' ' + mod2Class + ' ' + dayClass },
+      { 'class': day_style_default.a.day + ' ' + mod2Class + ' ' + dayClass + ' ' + openedClass },
       Object(preact_min["h"])(
         'h1',
         { 'class': day_style_default.a.label },
         day + 1
       ),
       Object(preact_min["h"])('div', { 'class': day_style_default.a.background, style: this.getStyle(day, offsetX) }),
-      this.renderGaurd(state)
+      this.renderGaurd(day, state)
     );
   };
 
@@ -688,10 +689,9 @@ var day_Day = function (_Component) {
     return { transform: transform };
   };
 
-  Day.prototype.renderGaurd = function renderGaurd(_ref2) {
+  Day.prototype.renderGaurd = function renderGaurd(day, _ref2) {
     var isFuture = _ref2.isFuture,
-        deltaFormatted = _ref2.deltaFormatted,
-        isOpened = _ref2.isOpened;
+        deltaFormatted = _ref2.deltaFormatted;
 
     var content = isFuture ? Object(preact_min["h"])(
       'p',
@@ -703,20 +703,16 @@ var day_Day = function (_Component) {
       { type: 'button', onClick: this.open },
       'Open'
     );
-    var classes = day_style_default.a.guard;
-    if (isOpened) {
-      classes = classes + ' ' + day_style_default.a.opened;
-    }
     return Object(preact_min["h"])(
       'div',
-      { 'class': classes },
+      { 'class': day_style_default.a.guard },
       Object(preact_min["h"])(
         'div',
         null,
         Object(preact_min["h"])(
           'h1',
           null,
-          this.props.day + 1,
+          day + 1,
           ' Dec'
         )
       ),
@@ -733,7 +729,7 @@ var day_Day = function (_Component) {
     get: function get() {
       var day = this.props.day;
 
-      var date = new Date(YEAR, 11, day + 1);
+      var date = new Date(YEAR, 10, day + 1);
       return date;
     }
   }]);
