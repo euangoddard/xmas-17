@@ -42,10 +42,11 @@ export class Day extends Component {
   render({ day, offsetX }, state) {
     const mod2Class = day % 2 === 0 ? style.cover : style.box;
     const dayClass = style[`day-${day + 1}`];
-    return <div class={`${style.day} ${mod2Class} ${dayClass}`}>
+    const openedClass = state.isOpened ? style.opened : '';
+    return <div class={`${style.day} ${mod2Class} ${dayClass} ${openedClass}`}>
       <h1 class={style.label}>{day + 1}</h1>
       <div class={style.background} style={this.getStyle(day, offsetX)}></div>
-      {this.renderGaurd(state)}
+      {this.renderGaurd(day, state)}
     </div>;
   }
 
@@ -68,15 +69,11 @@ export class Day extends Component {
     return { transform };
   }
 
-  renderGaurd({ isFuture, deltaFormatted, isOpened }) {
+  renderGaurd(day, { isFuture, deltaFormatted }) {
     const content = isFuture ? <p>Open in {deltaFormatted}</p> : <button type="button" onClick={this.open}>Open</button>;
-    let classes = style.guard;
-    if (isOpened) {
-      classes = `${classes} ${style.opened}`;
-    }
-    return <div class={classes}>
+    return <div class={style.guard}>
       <div>
-        <h1>{this.props.day + 1} Dec</h1>
+        <h1>{day + 1} Dec</h1>
       </div>
       <div>{content}</div>
     </div>;
@@ -89,7 +86,7 @@ export class Day extends Component {
 
   get date() {
     const { day } = this.props;
-    const date = new Date(YEAR, 11, day + 1);
+    const date = new Date(YEAR, 10, day + 1);
     return date;
   }
 }

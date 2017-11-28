@@ -103,7 +103,15 @@
 }
 
 .opened {
-  transform: rotateY(-90deg);
+
+  .guard {
+    transform: rotateY(-90deg);
+  }
+
+  &.box .background {
+    opacity: 1;
+  }
+  
 }
 
 .cover {
@@ -132,6 +140,7 @@
     position: relative;
     z-index: 2;
     text-align: center;
+    margin-bottom: 0;
   }
 
   $background-color: #E0E0E0;
@@ -156,6 +165,8 @@
     width: 40vmin;
     height: 40vmin;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
   }
 
   .label {
