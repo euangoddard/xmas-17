@@ -60,7 +60,7 @@
     padding: 1rem 2rem;
     border-radius: 0;
     font-family: inherit;
-    font-size: 5vmin;
+    font-size: 36px;
     font-weight: 700;
     color: #fff;
     position: relative;
@@ -68,6 +68,10 @@
     box-shadow: none;
     transition: background-color 0.25s ease-in-out, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+
+    @media (min-width: 500px) and (min-height: 500px) {
+      font-size: 5vmin;
+    }
 
     &:hover,
     &:focus {
