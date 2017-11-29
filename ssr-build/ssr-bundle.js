@@ -774,7 +774,7 @@ var intro_Intro = function (_Component) {
       Object(preact_min["h"])(
         'div',
         { style: this.getStyles(offsetX) },
-        'Scroll to start your advent adventure...'
+        'Scroll or drag to start your advent adventure...'
       ),
       Object(preact_min["h"])(
         match["Link"],
