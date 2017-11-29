@@ -92,8 +92,6 @@ function assign(obj, props) {
 }
 
 function exec(url, route, opts) {
-	if (opts === void 0) opts = EMPTY$1;
-
 	var reg = /(?:\?([^#]*))?(#.*)?$/,
 	    c = url.match(reg),
 	    matches = {},
@@ -136,28 +134,30 @@ function exec(url, route, opts) {
 }
 
 function pathRankSort(a, b) {
-	var aAttr = a.attributes || EMPTY$1,
-	    bAttr = b.attributes || EMPTY$1;
-	if (aAttr.default) {
-		return 1;
-	}
-	if (bAttr.default) {
-		return -1;
-	}
-	var diff = rank(aAttr.path) - rank(bAttr.path);
-	return diff || aAttr.path.length - bAttr.path.length;
+	return a.rank < b.rank ? 1 : a.rank > b.rank ? -1 : a.index - b.index;
+}
+
+// filter out VNodes without attributes (which are unrankeable), and add `index`/`rank` properties to be used in sorting.
+function prepareVNodeForRanking(vnode, index) {
+	vnode.index = index;
+	vnode.rank = rankChild(vnode);
+	return vnode.attributes;
 }
 
 function segmentize(url) {
-	return strip(url).split('/');
+	return url.replace(/(^\/+|\/+$)/g, '').split('/');
 }
 
-function rank(url) {
-	return (strip(url).match(/\/+/g) || '').length;
+function rankSegment(segment) {
+	return segment.charAt(0) == ':' ? 1 + '*+?'.indexOf(segment.charAt(segment.length - 1)) || 4 : 5;
 }
 
-function strip(url) {
-	return url.replace(/(^\/+|\/+$)/g, '');
+function rank(path) {
+	return segmentize(path).map(rankSegment).join('');
+}
+
+function rankChild(vnode) {
+	return vnode.attributes.default ? 0 : rank(vnode.attributes.path);
 }
 
 var customHistory = null;
@@ -302,7 +302,7 @@ function initEventListeners() {
 	if (typeof addEventListener === 'function') {
 		if (!customHistory) {
 			addEventListener('popstate', function () {
-				return routeTo(getCurrentUrl());
+				routeTo(getCurrentUrl());
 			});
 		}
 		addEventListener('click', delegateLinkHandler);
@@ -386,19 +386,18 @@ var Router = function (Component$$1) {
 	};
 
 	Router.prototype.getMatchingChildren = function getMatchingChildren(children, url, invoke) {
-		return children.slice().sort(pathRankSort).map(function (vnode) {
-			var attrs = vnode.attributes || {},
-			    path = attrs.path,
-			    matches = exec(url, path, attrs);
+		return children.filter(prepareVNodeForRanking).sort(pathRankSort).map(function (vnode) {
+			var matches = exec(url, vnode.attributes.path, vnode.attributes);
 			if (matches) {
 				if (invoke !== false) {
 					var newProps = { url: url, matches: matches };
 					assign(newProps, matches);
+					delete newProps.ref;
+					delete newProps.key;
 					return Object(__WEBPACK_IMPORTED_MODULE_0_preact__["cloneElement"])(vnode, newProps);
 				}
 				return vnode;
 			}
-			return false;
 		}).filter(Boolean);
 	};
 
@@ -729,7 +728,7 @@ var day_Day = function (_Component) {
     get: function get() {
       var day = this.props.day;
 
-      var date = new Date(YEAR, 10, day + 1);
+      var date = new Date(YEAR, 11, day + 1);
       return date;
     }
   }]);
@@ -1043,7 +1042,7 @@ var about__ref2 = Object(preact_min["h"])(
     { href: 'https://preactjs.com/', target: '_blank' },
     'Preact'
   ),
-  '. It is available as an installed progressive web app (i.e. works offline) \u2013 this was achieved using ',
+  '. It is available as an installable progressive web app (i.e. works offline) \u2013 this was achieved using ',
   Object(preact_min["h"])(
     'a',
     { href: 'https://github.com/developit/preact-cli', target: '_blank' },
@@ -1092,7 +1091,6 @@ var about_About = function (_Component) {
   }
 
   About.prototype.render = function render() {
-    console.log(about_style_default.a);
     return Object(preact_min["h"])(
       'div',
       { 'class': about_style_default.a.about },
@@ -1127,6 +1125,8 @@ function app__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
+var TRACKING_ID = 'UA-110442895-1';
+
 var app__ref = Object(preact_min["h"])(home_Home, { path: '/' });
 
 var app__ref2 = Object(preact_min["h"])(about_About, { path: '/about' });
@@ -1145,8 +1145,21 @@ var app_App = function (_Component) {
 
     return _ret = (_temp = (_this = app__possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleRoute = function (e) {
       _this.currentUrl = e.url;
+      _this.gtag('config', TRACKING_ID, { page_path: e.url });
     }, _temp), app__possibleConstructorReturn(_this, _ret);
   }
+
+  App.prototype.componentDidMount = function componentDidMount() {
+    if (typeof window !== 'undefined"' && typeof document !== 'undefined') {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + TRACKING_ID;
+      document.head.appendChild(script);
+      this.gtag('js', new Date());
+      this.gtag('config', TRACKING_ID, { send_page_view: false });
+    }
+  };
+
   /** Gets fired when the route changes.
    *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
    *	@param {string} event.url	The newly routed URL
@@ -1164,6 +1177,13 @@ var app_App = function (_Component) {
         app__ref2
       )
     );
+  };
+
+  App.prototype.gtag = function gtag() {
+    if (typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(arguments);
+    }
   };
 
   return App;
