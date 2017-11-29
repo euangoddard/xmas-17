@@ -86,7 +86,7 @@ export class Day extends Component {
 
   get date() {
     const { day } = this.props;
-    const date = new Date(YEAR, 10, day + 1);
+    const date = new Date(YEAR, 11, day + 1);
     return date;
   }
 }
