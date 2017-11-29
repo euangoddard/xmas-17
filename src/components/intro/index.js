@@ -6,7 +6,7 @@ import style from './style';
 export class Intro extends Component {
   render({ offsetX }) {
     return <div class={style.intro}>
-      <div style={this.getStyles(offsetX)}>Scroll to start your advent adventure...</div>
+      <div style={this.getStyles(offsetX)}>Scroll or drag to start your advent adventure...</div>
       <Link href="/about" class={style.about + ' link-button'}>About</Link>
     </div>;
   }
